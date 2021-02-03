@@ -7,6 +7,7 @@
   request.setCharacterEncoding("UTF-8");
 %> 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="member" value="${membersList}" />
 <head>
    <meta charset="UTF-8">
    <title>글보기</title>
@@ -51,7 +52,7 @@
 	 
 	 }
 	 
-	 function fn_reply_form(url, parentNO){
+	 function fn_reply_form(url, parentNO){ // fn_reply_form('${contextPath}/board/replyForm.do , 
 		 var form = document.createElement("form");
 		 form.setAttribute("method", "post");
 		 form.setAttribute("action", url);
@@ -80,7 +81,7 @@
   <form name="frmArticle" method="post"  action="${contextPath}"  enctype="multipart/form-data">
   <table  border=0  align="center">
   <tr>
-   <td width=150 align="center" bgcolor=#FF9933>
+   <td width=150 align="center" bgcolor=#3CFBFF>
       글번호
    </td>
    <td >
@@ -89,7 +90,7 @@
    </td>
   </tr>
   <tr>
-    <td width="150" align="center" bgcolor="#FF9933">
+    <td width="150" align="center" bgcolor="#3CFBFF">
       작성자 아이디
    </td>
    <td >
@@ -105,7 +106,7 @@
    </td>   
   </tr>
   <tr>
-    <td width="150" align="center" bgcolor="#FF9933">
+    <td width="150" align="center" bgcolor="#3CFBFF">
       내용
    </td>
    <td>
@@ -115,7 +116,7 @@
  
 <c:if test="${not empty article.imageFileName && article.imageFileName!='null' }">  
 <tr>
-    <td width="150" align="center" bgcolor="#FF9933"  rowspan="2">
+    <td width="150" align="center" bgcolor="#3CFBFF"  rowspan="2">
       이미지
    </td>
    <td>
@@ -131,7 +132,7 @@
   </tr>
  </c:if>
   <tr>
-	   <td width="150" align="center" bgcolor="#FF9933">
+	   <td width="150" align="center" bgcolor="#3CFBFF">
 	      등록일자
 	   </td>
 	   <td>
@@ -149,7 +150,7 @@
    <td colspan="2" align="center">
 	    <input type=button value="수정하기" onClick="fn_enable(this.form)">
 	    <input type=button value="삭제하기" onClick="fn_remove_article('${contextPath}/board/removeArticle.do', ${article.articleNO})">
-	    <input type=button value="리스트로 돌아가기"  onClick="backToList(this.form)">
+	    <input type=button value="홈으로"  onClick="backToList(this.form)">
 	     <input type=button value="답글쓰기"  onClick="fn_reply_form('${contextPath}/board/replyForm.do', ${article.articleNO})">
    </td>
   </tr>

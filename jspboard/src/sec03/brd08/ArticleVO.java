@@ -5,8 +5,8 @@ import java.net.URLEncoder;
 import java.sql.Date;
 
 public class ArticleVO {
-	private int level;
 	private int articleNO;
+	private int level;
 	private int parentNO;
 	private String title;
 	private String content;
@@ -93,7 +93,7 @@ public class ArticleVO {
 	public void setImageFileName(String imageFileName) {
 		try {
 			if(imageFileName!=null && imageFileName.length()!=0) {
-				this.imageFileName = URLEncoder.encode(imageFileName, "UTF-8");  //ÆÄÀÏÀÌ¸§¿¡ Æ¯¼ö¹®ÀÚ°¡ ÀÖÀ» °æ¿ì ÀÎÄÚµùÇÕ´Ï´Ù.
+				this.imageFileName = URLEncoder.encode(imageFileName, "UTF-8");  //ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½Õ´Ï´ï¿½.
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

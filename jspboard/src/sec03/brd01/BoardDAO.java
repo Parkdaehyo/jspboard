@@ -38,7 +38,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				int level = rs.getInt("level"); //¿À¶óÅ¬¿¡¼­ Á¦°øÇÏ´Â °¡»óÀÇ ÄÃ·³ level?
+				int level = rs.getInt("level"); //ê° ê¸€ì˜ ê¹Šì´(ê³„ì¸µ)ì„ LEVEL ì†ì„±ì— ì €ì¥í•©ë‹ˆë‹¤.
 				int articleNO = rs.getInt("articleNO");
 				int parentNO = rs.getInt("parentNO");
 				String title = rs.getString("title");

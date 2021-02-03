@@ -21,10 +21,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-/**
- * Servlet implementation class BoardController
- */
-/*@WebServlet("/board/*")*/
+
+
+//WebServlet("/board/*")
 public class BoardController extends HttpServlet {
 	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
 	BoardService boardService;
@@ -74,6 +73,7 @@ public class BoardController extends HttpServlet {
 			} else if (action.equals("/articleForm.do")) {
 				nextPage = "/board02/articleForm.jsp";
 			} else if (action.equals("/addArticle.do")) {
+				
 				Map<String, String> articleMap = upload(request, response);
 				String title = articleMap.get("title");
 				String content = articleMap.get("content");
@@ -109,11 +109,11 @@ public class BoardController extends HttpServlet {
 				FileItem fileItem = (FileItem) items.get(i);
 				if (fileItem.isFormField()) {
 					System.out.println(fileItem.getFieldName() + "=" + fileItem.getString(encoding));
-					articleMap.put(fileItem.getFieldName(), fileItem.getString(encoding));
+					articleMap.put(fileItem.getFieldName(), fileItem.getString(encoding));//ì „ì†“ëœ íŒŒë¼ë¯¸í„°ë¥¼(key,value)ë¡œ Mapì— ì €ì¥
 				} else {
-					System.out.println("ÆÄ¶ó¹ÌÅÍ¸í:" + fileItem.getFieldName());
-					//System.out.println("ÆÄÀÏ¸í:" + fileItem.getName());
-					System.out.println("ÆÄÀÏÅ©±â:" + fileItem.getSize() + "bytes");
+					System.out.println("ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½:" + fileItem.getFieldName());
+					//System.out.println("íŒŒì¼ëª…:" + fileItem.getName());
+					System.out.println("ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½:" + fileItem.getSize() + "bytes");
 					//articleMap.put(fileItem.getFieldName(), fileItem.getName());
 					if (fileItem.getSize() > 0) {
 						int idx = fileItem.getName().lastIndexOf("\\");
@@ -122,8 +122,8 @@ public class BoardController extends HttpServlet {
 						}
 
 						String fileName = fileItem.getName().substring(idx + 1);
-						System.out.println("ÆÄÀÏ¸í:" + fileName);
-						articleMap.put(fileItem.getFieldName(), fileName);  //ÀÍ½ºÇÃ·Î·¯¿¡¼­ ¾÷·Îµå ÆÄÀÏÀÇ °æ·Î Á¦°Å ÈÄ map¿¡ ÆÄÀÏ¸í ÀúÀå
+						System.out.println("ï¿½ï¿½ï¿½Ï¸ï¿½:" + fileName);
+						//articleMap.put(fileItem.getFieldName(), fileName); //ìµìŠ¤í”Œë¡œëŸ¬ì—ì„œ ì—…ë¡œë“œ íŒŒì¼ì˜ ê²½ë¡œ ì œê±° í›„ Mapì— íŒŒì¼ëª… ì €ì¥
 						File uploadFile = new File(currentDirPath + "\\" + fileName);
 						fileItem.write(uploadFile);
 

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberController
  */
-/*@WebServlet("/member/*")*/
+@WebServlet("/member/*")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberDAO memberDAO;
@@ -43,7 +43,7 @@ public class MemberController extends HttpServlet {
 		String nextPage = null;
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String action = request.getPathInfo();
+		String action = request.getPathInfo(); 
 		System.out.println("action:" + action);
 		if (action == null || action.equals("/listMembers.do")) {
 			List<MemberVO> membersList = memberDAO.listMembers();
@@ -55,14 +55,14 @@ public class MemberController extends HttpServlet {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			MemberVO memberVO = new MemberVO(id, pwd, name, email);
-			memberDAO.addMember(memberVO);
+			memberDAO.addMember(memberVO); //실행 후
 			request.setAttribute("msg", "addMember");
-			nextPage = "/member/listMembers.do";
+			nextPage = "/member/listMembers.do"; //여기로 요청합니다.
 		} else if (action.equals("/memberForm.do")) {
 			nextPage = "/test03/memberForm.jsp";
 		}else if(action.equals("/modMemberForm.do")){
 		     String id=request.getParameter("id");
-		     MemberVO memInfo = memberDAO.findMember(id);
+		     MemberVO memInfo = memberDAO.findMember(id); //수정전 정보
 		     request.setAttribute("memInfo", memInfo);
 		     nextPage="/test03/modMemberForm.jsp";
 		}else if(action.equals("/modMember.do")){

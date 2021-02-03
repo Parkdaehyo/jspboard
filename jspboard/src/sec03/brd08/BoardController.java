@@ -61,7 +61,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		HttpSession session;
-		String action = request.getPathInfo();
+		String action = request.getPathInfo(); //클라이언트가 request를 보낼 때의 URL 관련된 부가적인 경로 정보를 리턴한다.
 		System.out.println("action:" + action);
 		try {
 			List<ArticleVO> articlesList = new ArrayList<ArticleVO>();

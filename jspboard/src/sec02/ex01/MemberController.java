@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberController
  */
-@WebServlet("/member/*")
+// @WebServlet("/member/*") 
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberDAO memberDAO;
@@ -44,12 +44,12 @@ public class MemberController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		String action = request.getPathInfo();
 		System.out.println("action:" + action);
-		if (action == null || action.equals("/listMembers.do")) {
+		if (action == null || action.equals("/listMembers.do")) { //actioon이 null인 이유는 예외값을 방지.
 			List<MemberVO> membersList = memberDAO.listMembers();
 			request.setAttribute("membersList", membersList);
-			nextPage = "/test02/listMembers.jsp";
-		} else if (action.equals("/addMember.do")) {
-			String id = request.getParameter("id");
+			nextPage = "/test02/listMembers.jsp"; //nextPage로 포워딩할 준비.
+		} else if (action.equals("/addMember.do")) { //요청 url명이 addMember.do 일경우
+			String id = request.getParameter("id"); //파라미터의 값을 얻어온다.
 			String pwd = request.getParameter("pwd");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
@@ -59,7 +59,7 @@ public class MemberController extends HttpServlet {
 
 		} else if (action.equals("/memberForm.do")) {
 			nextPage = "/test02/memberForm.jsp";
-		} else {
+		} else { //if문 이하에 부합하지 않은 모든 url명은 회원목록을 보여준다.
 			List<MemberVO> membersList = memberDAO.listMembers();
 			request.setAttribute("membersList", membersList);
 			nextPage = "/test02/listMembers.jsp";
